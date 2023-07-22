@@ -1,4 +1,4 @@
-import { poolData } from "./cognito.config.js";
+import { poolData } from './cognito.config.js';
 import { 
   CognitoUserPool, CognitoUserAttribute,
 	CognitoUser, AuthenticationDetails,
@@ -53,9 +53,8 @@ export function getUserAttributes(user) {
 export function signUpCognitoUser(username, password, email) {
   return new Promise((resolve, reject) => {
     let userPool = getCognitoUserPool();
-    userPool.signUp(username,
-      password,
-      [new CognitoUserAttribute({Name: 'email', Value: email})],
+    let attributes = [new CognitoUserAttribute({Name: 'email', Value: email})];
+    userPool.signUp(username, password, attributes,
       null,
       (err, result) => {
         if (err) {

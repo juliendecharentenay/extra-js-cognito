@@ -1,4 +1,4 @@
-export let poolData = {
+export const poolData = {
 	UserPoolId: '${userPoolId}',
 	ClientId: '${clientId}',
 };
