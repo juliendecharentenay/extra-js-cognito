@@ -111,9 +111,13 @@ export function confirmCognitoUser(username, code) {
  * new password.
  */
 export function handleNewPassword(user, userAttributes, newPassword) {
-  return new Promise((resolve) => {
-    user.completeNewPasswordChallenge(newPassword, userAttributes);
-    resolve();
+  return new Promise((resolve, reject) => {
+    delete userAttributes.email_verified;
+    delete userAttributes.email;
+    user.completeNewPasswordChallenge(newPassword, userAttributes, {
+      onSuccess: resolve,
+      onFailure: reject,
+    });
   });
 }
 
